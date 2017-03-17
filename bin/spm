@@ -50,7 +50,7 @@ function get_setup() {
     if [ -e "$setup_ini" ]; then
         cat "$setup_ini"
     else
-        lynx -source $2/x86_64/setup.bz2 | bunzip2
+        wget -O - -o /dev/null $2/x86_64/setup.bz2 | bunzip2
     fi
 }
 
@@ -173,11 +173,12 @@ Options:
     -w, --wait                      wait for package install/remove to finish
     -M, --manager                   open cygwin package selector before continuing
     -C, --change-mirror http://...  change the main cygwin package mirror
+    -b, --base                      list base packages
 EOF
 }
 cmd_suffix="-B "
 # get command options
-OPTS=`getopt -n 'spm' -o h,v,l,o,d,D,m,t,n,N,I,s,S,c,i,r,u,R,w,M,C -l help,verbose,list,owns,deps,deps-all,missing,top,needs,needs-all,islands,status,search,clean,install,remove,update,remove-all,wait,manager,change-mirror -- "$@"`
+OPTS=`getopt -n 'spm' -o h,v,l,o,d,D,m,t,n,N,I,s,S,c,i,r,u,R,w,M,C,b -l help,verbose,list,owns,deps,deps-all,missing,top,needs,needs-all,islands,status,search,clean,install,remove,update,remove-all,wait,manager,change-mirror,base -- "$@"`
 if [ $? != 0 ] ; then echo "Terminating..." >&2 ; exit 1 ; fi
 eval set -- "$OPTS"
 while true ; do
@@ -287,6 +288,10 @@ while true ; do
         main_mirror="$1"
         do_cygsetup=1
         break;;
+    -b|--base)
+	shift
+	echo "$(get_base)"
+	break;;
     -M|--manager)
         shift
         cmd_suffix+="-M ";;
