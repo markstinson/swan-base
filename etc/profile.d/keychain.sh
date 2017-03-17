@@ -3,8 +3,9 @@
 [ -z "$DESKTOP_SESSION" ] && [ "$TERM" != "cygwin" ] && [ "$SHLVL" = "1" ] || return
 
 function _start_agent {
-    ids=$(ls $HOME/.ssh/id_* | grep -v '\.pub')
-    eval `keychain -q --timeout 480 --eval --ignore-missing --agents ssh $ids`
+    if ! pgrep ssh-agent > /dev/null; then
+	eval `ssh-agent` > /dev/null
+    fi
 }
 
 # Source SSH settings, if applicable
