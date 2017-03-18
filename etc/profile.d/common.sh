@@ -19,14 +19,18 @@ case $- in
       *) return;;
 esac
 
-# use /etc/inputrc as global
-[ -e /etc/inputrc ] && bind -f /etc/inputrc
-[ -e ~/.inputrc ] && bind -f ~/.inputrc
-
 # common env variables
 export EDITOR="nano"
 export BROWSER="windows-browser"
 export LESS="-erFX"
+
+eval "$(dircolors -b /etc/dircolors)" || eval "$(dircolors -b)"
+
+[[ "$SHELL" != "/bin/bash" ]] && return 0;
+
+# use /etc/inputrc as global
+[ -e /etc/inputrc ] && bind -f /etc/inputrc
+[ -e ~/.inputrc ] && bind -f ~/.inputrc
 
 PS2=" . \[\e[m\]"
 PROMPT_COMMAND='__default_ps1'
@@ -54,6 +58,4 @@ shopt -s checkwinsize
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 shopt -s globstar
-
-eval "$(dircolors -b /etc/dircolors)" || eval "$(dircolors -b)"
 
