@@ -304,7 +304,7 @@ done
 cygarch=$(uname -m)
 cygexe="setup-$cygarch.exe"
 cygurl="http://cygwin.com/$cygexe"
-base_cmd="$spm_cache/$cygexe -Ovqd -l $(cygpath -w $spm_cache) -R $(cygpath -w /) -a $cygarch \
+base_cmd="$spm_cache/$cygexe -OvqdN -l $(cygpath -w $spm_cache) -R $(cygpath -w /) -a $cygarch \
         -s $main_mirror \
         -s http://sirius.starlig.ht/ -K http://sirius.starlig.ht/sirius.gpg \
         -s http://sourceware.mirrors.tds.net/pub/sourceware.org/cygwinports/ -K http://cygwinports.org/ports.gpg"

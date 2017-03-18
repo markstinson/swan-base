@@ -1,22 +1,22 @@
-# lux.nsi
+# swan.nsi
 # Used to compile the installer
 # the installer downloads the cygwin setup program
 # to perform package installation
 
 # use modern gui
 !include MUI2.nsh
-# do not request admin privs
+# do NOT request admin privs
 RequestExecutionLevel user
 
 # name
-Name "lux installer"
+Name "Swan"
 # output file
 SetCompressor lzma
-OutFile "lux-install.exe"
+OutFile "SwanSetup.exe"
 # default install directory
-InstallDir C:\lux-x86_64
+InstallDir C:\.Swan
 # installer icon
-!define MUI_ICON "${NSISDIR}\Contrib\Graphics\Icons\orange-install.ico"
+!define MUI_ICON "Swan.ico"
 # use directory select page, and install page
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
@@ -43,8 +43,8 @@ Function DoSetup
     Abort
   success:
     # download success, execute cygwin setup with parameters (mirrors,
-    # lux-minimal package, download & install locations, etc.)
-    ExecWait '"$0" -vgBqO -l "$2" -P lux-minimal -R "$INSTDIR" \
+    # swan-base package, download & install locations, etc.)
+    ExecWait '"$0" -vgBqOdN -l "$2" -P lux-minimal -R "$INSTDIR" \
     -s http://sirius.starlig.ht/ \
     -s http://cygwin.mirror.constant.com/ \
     -s http://sourceware.mirrors.tds.net/pub/sourceware.org/cygwinports/ \
