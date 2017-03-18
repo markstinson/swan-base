@@ -14,7 +14,7 @@ Name "Swan"
 SetCompressor lzma
 OutFile "SwanSetup.exe"
 # default install directory
-InstallDir C:\.Swan
+InstallDir C:\.swan-x86_64
 # installer icon
 !define MUI_ICON "Swan.ico"
 # use directory select page, and install page
