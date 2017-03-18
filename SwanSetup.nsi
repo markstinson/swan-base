@@ -44,7 +44,7 @@ Function DoSetup
   success:
     # download success, execute cygwin setup with parameters (mirrors,
     # swan-base package, download & install locations, etc.)
-    ExecWait '"$0" -vgBqOdN -l "$2" -P lux-minimal -R "$INSTDIR" \
+    ExecWait '"$0" -vgBqOdN -l "$2" -P swan-base -R "$INSTDIR" \
     -s http://sirius.starlig.ht/ \
     -s http://cygwin.mirror.constant.com/ \
     -s http://sourceware.mirrors.tds.net/pub/sourceware.org/cygwinports/ \
