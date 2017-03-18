@@ -1,4 +1,4 @@
-# swan.nsi
+﻿# swan.nsi
 # Used to compile the installer
 # the installer downloads the cygwin setup program
 # to perform package installation
@@ -10,6 +10,12 @@ RequestExecutionLevel user
 
 # name
 Name "Swan"
+VIProductVersion 1.0.0.0
+VIAddVersionKey /LANG=0 "ProductName" "Swan"
+VIAddVersionKey /LANG=0 "Comments" "GNU/Cygwin Xfce Desktop"
+VIAddVersionKey /LANG=0 "CompanyName" "Starlight"
+VIAddVersionKey /LANG=0 "LegalTrademarks" "MIT License"
+VIAddVersionKey /LANG=0 "LegalCopyright" "© Starlight"
 # output file
 SetCompressor lzma
 OutFile "SwanSetup.exe"
