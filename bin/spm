@@ -247,6 +247,7 @@ while true ; do
         for i in $(find . -maxdepth 1 -type d -name '??*'); do 
             rm -r $i
         done
+	rm wget-log* -f
         break;;
     -i|--install)
         shift 2
