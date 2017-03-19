@@ -12,5 +12,5 @@ fi
 
 prog="$1"
 shift
-cygstart $background --action=runas -- "$(which $prog)" "$@"
+cygstart --action=runas -- "$(which $prog)" "$@"
 
