@@ -3,15 +3,9 @@
 [ -z "$DESKTOP_SESSION" ] && [ "$TERM" != "cygwin" ] && [ "$SHLVL" = "1" ] || return
 
 function _start_agent {
-    SSH_ENV="$HOME/.ssh/.env"
-    if ! pgrep ssh-agent >/dev/null; then
-    	# spawn ssh-agent
-        ssh-agent | sed 's/^echo/#echo/' > "$SSH_ENV"
-        chmod 600 "$SSH_ENV"
-    fi
-    if [ -e "$SSH_ENV" ]; then
-        . "$SSH_ENV" > /dev/null
-    fi
+    # spawn ssh-agent
+    eval `ssh-agent` >/dev/null
+    trap "kill $SSH_AGENT_PID" EXIT
 }
 
 # Source SSH settings, if applicable
