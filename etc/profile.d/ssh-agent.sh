@@ -5,7 +5,7 @@
 function _start_agent {
     # spawn ssh-agent
     eval `ssh-agent` >/dev/null
-    trap "kill $SSH_AGENT_PID" EXIT
+    trap 'eval `ssh-agent -k > /dev/null`'  EXIT
 }
 
 # Source SSH settings, if applicable
