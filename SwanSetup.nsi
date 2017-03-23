@@ -52,9 +52,6 @@ Function DoSetup
     ExecWait '"$0" -vgBqOdN -l "$2" -P swan-base -R "$INSTDIR" \
     -s http://sirius.starlig.ht/ \
     -s http://cygwin.mirror.constant.com/ \
-    -s http://sourceware.mirrors.tds.net/pub/sourceware.org/cygwinports/ \
-    -K http://sirius.starlig.ht/sirius.gpg \
-    -K http://cygwinports.org/ports.gpg'
-
+    -K http://sirius.starlig.ht/sirius.gpg'
 FunctionEnd
 
