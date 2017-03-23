@@ -39,10 +39,9 @@ Function DoSetup
   # executable filename (downloaded)
   StrCpy $0 "$2\setup-x86_64.exe"
   # download cygwin setup executable
-  NSISdl::download "https://cygwin.com/setup-x86_64.exe" $0
-  # check for successful download
-  Pop $1
-  StrCmp $1 success success
+  inetc::get /caption "Cygwin Setup Download" /canceltext "Cancel" "https://cygwin.com/setup-x86_64.exe" "$0" /end
+  Pop $1 # return value = exit code, "OK" means OK
+  StrCmp $1 OK success
     # download failed
     SetDetailsView show
     DetailPrint "download failed: $0"
