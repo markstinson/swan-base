@@ -32,9 +32,6 @@ eval "$(dircolors -b /etc/dircolors)" || eval "$(dircolors -b)"
 [ -e /etc/inputrc ] && bind -f /etc/inputrc
 [ -e ~/.inputrc ] && bind -f ~/.inputrc
 
-PS2=" . \[\e[m\]"
-PROMPT_COMMAND='__default_ps1'
-
 # don't put duplicate lines or lines starting with space in the history.
 export HISTCONTROL=ignoreboth
 # append to the history file, don't overwrite it
