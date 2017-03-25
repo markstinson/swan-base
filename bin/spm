@@ -305,17 +305,13 @@ done
 cygarch=$(uname -m)
 cygexe="setup-$cygarch.exe"
 cygurl="http://cygwin.com/$cygexe"
-base_cmd="$spm_cache/$cygexe -OvqdN -l $(cygpath -w $spm_cache) -R $(cygpath -w /) -a $cygarch \
+base_cmd="$spm_cache/$cygexe -OvqdnN -l $(cygpath -w $spm_cache) -R $(cygpath -w /) -a $cygarch \
         -s $main_mirror \
         -s http://sirius.starlig.ht/ -K http://sirius.starlig.ht/sirius.gpg"
 mkdir -p $spm_cache
 cd $spm_cache
-if [ -e "/bin/wget" ]; then
-    # download setup.exe (if newer)
-    wget -nv -N $cygurl
-else
-    lynx -source $cygurl > $cygexe
-fi
+# download setup.exe (if newer)
+wget -nv -N $cygurl
 chmod +x $cygexe
 if [ -n "$isadmin" ]; then
     chmod -R +wX /var/cache/rebase
