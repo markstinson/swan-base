@@ -20,7 +20,8 @@ VIAddVersionKey /LANG=0 "LegalCopyright" "© Starlight"
 SetCompressor lzma
 OutFile "SwanSetup.exe"
 # default install directory
-InstallDir C:\.swan-x86_64
+#SetShellVarContext all
+InstallDir $%programdata%\Swan
 # installer icon
 !define MUI_ICON "Swan.ico"
 # use directory select page, and install page

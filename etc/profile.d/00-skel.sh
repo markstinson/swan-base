@@ -6,8 +6,8 @@
 export CYGWIN="${CYGWIN}${CYGWIN:+ }winsymlinks"
 export PATH="$PATH:/usr/libexec/busybox/bin:/usr/libexec/busybox/sbin"
 
-# bind user profile directory
-[ ! -e "$HOME/.userprofile" ] && mount -fo user "$USERPROFILE" ~/.userprofile
+# mount AppData on $HOME
+mount -fo user "${APPDATA}/Swan" "$HOME"
 
 # ensure skeleton files are updated for new packages
 for bone in `find /etc/skel -type f -printf "%P\n"`; do
