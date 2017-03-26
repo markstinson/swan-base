@@ -7,7 +7,18 @@ export CYGWIN="${CYGWIN}${CYGWIN:+ }winsymlinks"
 export PATH="$PATH:/usr/libexec/busybox/bin:/usr/libexec/busybox/sbin"
 
 # mount AppData on $HOME
-mount -fo user "${APPDATA}/Swan" "$HOME"
+if ! mount | grep "${APPDATA//\\//}" >/dev/null; then
+	apphome="$(cygpath $APPDATA)/Swan"
+	mkdir -p "$apphome"
+	# migrate dotfiles
+	for x in $HOME/* $HOME/.[!.]* $HOME/..?*; do
+	  if [ -e "$x" ]; then mv -n -- "$x" "$apphome/$(basename $x)"; fi
+	done
+	mount -fo user "${APPDATA}\\Swan" "$HOME"
+	unset apphome
+	unset x
+fi
+
 
 # ensure skeleton files are updated for new packages
 for bone in `find /etc/skel -type f -printf "%P\n"`; do
@@ -16,5 +27,6 @@ for bone in `find /etc/skel -type f -printf "%P\n"`; do
         cp /etc/skel/$bone $HOME/$bone
     fi
 done
+unset bone
 
 export SKEL_FINISHED=1

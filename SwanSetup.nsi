@@ -50,7 +50,7 @@ Function DoSetup
   success:
     # download success, execute cygwin setup with parameters (mirrors,
     # swan-base package, download & install locations, etc.)
-    ExecWait '"$0" -vgBqOn -l "$2" -P swan-base -R "$INSTDIR" \
+    ExecWait '"$0" -vgBqOn -l "$2" -P swan-base-experimental -R "$INSTDIR" \
     -s http://sirius.starlig.ht/ \
     -s http://cygwin.mirror.constant.com/ \
     -K http://sirius.starlig.ht/sirius.gpg'
