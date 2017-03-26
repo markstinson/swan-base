@@ -24,6 +24,7 @@ OutFile "SwanSetup.exe"
 InstallDir $%programdata%\Swan
 # installer icon
 !define MUI_ICON "Swan.ico"
+!define MUI_UNICON "BlackSwan.ico"
 # use directory select page, and install page
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
@@ -53,7 +54,7 @@ Function DoSetup
   success:
     WriteUninstaller "$INSTDIR\UninstallSwan.exe"
     CreateDirectory "$SMPROGRAMS\Swan"
-    CreateShortcut "$SMPROGRAMS\Swan\Uninstall Swan.lnk" "$INSTDIR\UninstallSwan.exe" "" "$INSTDIR\Swan.ico"
+    CreateShortcut "$SMPROGRAMS\Swan\Uninstall Swan.lnk" "$INSTDIR\UninstallSwan.exe" "" "$INSTDIR\BlackSwan.ico"
     # download success, execute cygwin setup with parameters (mirrors,
     # swan-base package, download & install locations, etc.)
     ExecWait '"$0" -vgBqOn -l "$2" -P swan-base-experimental -R "$INSTDIR" \
