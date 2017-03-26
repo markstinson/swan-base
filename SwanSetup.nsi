@@ -2,7 +2,7 @@
 # Used to compile the installer
 # the installer downloads the cygwin setup program
 # to perform package installation
-
+!define UninstName "Uninstall"
 # use modern gui
 !include MUI2.nsh
 # do NOT request admin privs
@@ -27,6 +27,9 @@ InstallDir $%programdata%\Swan
 # use directory select page, and install page
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
+;Uninstaller pages
+!insertmacro MUI_UNPAGE_CONFIRM
+!insertmacro MUI_UNPAGE_INSTFILES
 
 # do the actual setup
 Section ""
@@ -48,6 +51,9 @@ Function DoSetup
     DetailPrint "download failed: $0"
     Abort
   success:
+    WriteUninstaller "$INSTDIR\UninstallSwan.exe"
+    CreateDirectory "$SMPROGRAMS\Swan"
+    CreateShortcut "$SMPROGRAMS\Swan\Uninstall Swan.lnk" "$INSTDIR\UninstallSwan.exe" "" "$INSTDIR\Swan.ico"
     # download success, execute cygwin setup with parameters (mirrors,
     # swan-base package, download & install locations, etc.)
     ExecWait '"$0" -vgBqOn -l "$2" -P swan-base-experimental -R "$INSTDIR" \
@@ -56,3 +62,7 @@ Function DoSetup
     -K http://sirius.starlig.ht/sirius.gpg'
 FunctionEnd
 
+Section "Uninstall"
+    RMDir /r "$INSTDIR"
+    RMDIR /r "$SMPROGRAMS\Swan"
+SectionEnd
