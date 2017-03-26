@@ -54,7 +54,7 @@ Function DoSetup
   success:
     WriteUninstaller "$INSTDIR\UninstallSwan.exe"
     CreateDirectory "$SMPROGRAMS\Swan"
-    CreateShortcut "$SMPROGRAMS\Swan\Uninstall Swan.lnk" "$INSTDIR\UninstallSwan.exe" "" "$INSTDIR\BlackSwan.ico"
+    CreateShortcut "$SMPROGRAMS\Swan\Uninstall Swan.lnk" "$INSTDIR\UninstallSwan.exe"
     # download success, execute cygwin setup with parameters (mirrors,
     # swan-base package, download & install locations, etc.)
     ExecWait '"$0" -vgBqOn -l "$2" -P swan-base-experimental -R "$INSTDIR" \
