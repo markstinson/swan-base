@@ -65,4 +65,7 @@ FunctionEnd
 Section "Uninstall"
     RMDir /r "$INSTDIR"
     RMDIR /r "$SMPROGRAMS\Swan"
+    RMDIR /r "$SMPROGRAMS\Cygwin-X"
+    Delete "$DESKTOP\Swan Console.lnk"
+    Delete "$DESKTOP\Swan Xfce4 Desktop.lnk"
 SectionEnd
