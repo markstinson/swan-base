@@ -16,7 +16,7 @@ function say() {
 # list files in package
 function list() {
     for pkg; do
-        cygcheck -l "$pkg" | dos2unix
+        cygcheck -l "$pkg"
     done | sort -u
 }
 
