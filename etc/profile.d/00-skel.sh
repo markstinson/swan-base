@@ -4,7 +4,6 @@
 
 # use windows shortcuts as symlinks
 export CYGWIN="${CYGWIN}${CYGWIN:+ }winsymlinks"
-export PATH="$PATH:/usr/libexec/busybox/bin:/usr/libexec/busybox/sbin"
 
 # mount AppData on $HOME
 if ! mount | grep -i "home" >/dev/null; then

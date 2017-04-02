@@ -10,7 +10,7 @@ export LC_COLLATE="C"
 export LC_MONETARY=$LANG
 export LC_MESSAGES=$LANG
 if [[ "$PATH" != *"/sbin"* ]]; then
-    export PATH="/usr/local/sbin:/sbin:/usr/sbin:$PATH"
+    export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/libexec/busybox/bin:/usr/libexec/busybox/sbin:$PATH"
 fi
 
 # If not running interactively, don't do anything
