@@ -6,7 +6,7 @@
 export CYGWIN="${CYGWIN}${CYGWIN:+ }winsymlinks"
 
 # mount AppData on $HOME
-if ! mount | grep -e "^$(cygpath --mixed $APPDATA)/Swan on $HOME " >/dev/null; then
+if ! mount | grep -e "^$(cygpath --mixed "$APPDATA")/Swan on $HOME " >/dev/null; then
     mkdir -p "$(cygpath $APPDATA)/Swan"
     mount -fo user "${APPDATA}\\Swan" "$HOME"
 fi
