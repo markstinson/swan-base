@@ -58,7 +58,7 @@ Function DoSetup
     CreateShortcut "$SMPROGRAMS\Swan\Uninstall Swan.lnk" "$INSTDIR\UninstallSwan.exe"
     # download success, execute cygwin setup with parameters (mirrors,
     # swan-base package, download & install locations, etc.)
-    ExecWait '"$2" -vgBqOn -l "$1" -P swan-desktop -R "$INSTDIR" \
+    ExecWait '"$3" -vgBqOn -l "$1" -P swan-desktop -R "$INSTDIR" \
     -s http://sirius.starlig.ht/ \
     -s http://cygwin.mirror.constant.com/ \
     -K http://sirius.starlig.ht/sirius.gpg'
