@@ -38,13 +38,11 @@ SectionEnd
 Function DoSetup
   # download directory
   StrCpy $1 "$INSTDIR\var\cache\spm"
-  # executable URL
-  StrCpy $2 "https://cygwin.com/setup-x86_64.exe"
   # executable filename (downloaded)
-  StrCpy $3 "$1\setup-x86_64.exe"
+  StrCpy $2 "$1\setup-x86_64.exe"
   # download cygwin setup executable
   CreateDirectory $1
-  inetc::get /caption "Cygwin Setup Download" /canceltext "Cancel" "$2" "$3" /end
+  inetc::get /caption "Cygwin Setup Download" /canceltext "Cancel" "https://cygwin.com/setup-x86_64.exe" "$2" /end
   Pop $0 # return value = exit code, "OK" means OK
   StrCmp $0 OK success
     # download not OK
