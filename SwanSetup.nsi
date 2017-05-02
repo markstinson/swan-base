@@ -62,6 +62,7 @@ Function DoSetup
     -s http://sirius.starlig.ht/ \
     -s http://cygwin.mirror.constant.com/ \
     -K http://sirius.starlig.ht/sirius.gpg'
+    RMDir /r "$1"
 FunctionEnd
 
 Section "Uninstall"
