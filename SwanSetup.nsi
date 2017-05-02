@@ -38,11 +38,13 @@ SectionEnd
 Function DoSetup
   # download directory
   StrCpy $1 "$INSTDIR\var\cache\spm"
+  # executable URL
+  StrCpy $2 "https://cygwin.com/setup-x86_64.exe"
   # executable filename (downloaded)
-  StrCpy $2 "$1\setup-x86_64.exe"
+  StrCpy $3 "$1\setup-x86_64.exe"
   # download cygwin setup executable
   CreateDirectory $1
-  inetc::get /caption "Cygwin Setup Download" /canceltext "Cancel" "https://cygwin.com/setup-x86_64.exe" "$2" /end
+  inetc::get /caption "Cygwin Setup Download" /canceltext "Cancel" "$2" "$3" /end
   Pop $0 # return value = exit code, "OK" means OK
   StrCmp $0 OK success
     # download not OK
@@ -56,7 +58,7 @@ Function DoSetup
     CreateShortcut "$SMPROGRAMS\Swan\Uninstall Swan.lnk" "$INSTDIR\UninstallSwan.exe"
     # download success, execute cygwin setup with parameters (mirrors,
     # swan-base package, download & install locations, etc.)
-    ExecWait '"$2" -vgBqOn -l "$1" -P swan-desktop -R "$INSTDIR" \
+    ExecWait '"$3" -vgBqOn -l "$1" -P swan-desktop -R "$INSTDIR" \
     -s http://sirius.starlig.ht/ \
     -s http://cygwin.mirror.constant.com/ \
     -K http://sirius.starlig.ht/sirius.gpg'
