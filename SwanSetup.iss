@@ -16,7 +16,7 @@ DefaultGroupName=Swan
 LicenseFile=LICENSE
 OutputBaseFilename=SwanSetup
 SetupIconFile=Swan.ico
-Compression=lzma
+Compression=lzma2
 SolidCompression=yes
 PrivilegesRequired=lowest
 OutputDir=.
@@ -29,14 +29,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "{group}\{cm:ProgramOnTheWeb,Swan}"; Filename: "http://www.starlig.ht"        
 Name: "{group}\{cm:UninstallProgram,Swan}"; Filename: "{uninstallexe}"; IconFilename: "{app}\BlackSwan.ico"
 
-#include <idp.iss>
-[Code]
-procedure InitializeWizard();
-begin
- // download the cygwin installer
- idpAddFileComp('http://cygwin.com/setup-x86_64.exe',expandconstant('{tmp}\setup-x86_64.exe'),'');
- idpDownloadAfter(wpReady);
-end;
+[Files]
+Source: "setup-x86_64.exe"; DestDir: {tmp}; DestName: "setup-x86_64.exe"
 
 [Run]
 Filename: "{tmp}\setup-x86_64.exe"; WorkingDir: "{tmp}"; Parameters: "-vgBqOn -P swan-desktop -R ""{app}"" -s ""http://sirius.starlig.ht/"" -s ""http://cygwin.mirror.constant.com/"" -K ""http://sirius.starlig.ht/sirius.gpg"""; Flags: waituntilterminated hidewizard runascurrentuser
