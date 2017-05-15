@@ -11,6 +11,8 @@ AppPublisher=Starlight
 AppPublisherURL=http://www.starlig.ht
 AppSupportURL=https://github.com/starlight/swan-desktop/issues
 AppUpdatesURL=http://www.starlig.ht
+ArchitecturesAllowed=x64
+ArchitecturesInstallIn64BitMode=x64
 DefaultDirName={%PROGRAMDATA|C:\ProgramData}\Swan
 DefaultGroupName=Swan
 LicenseFile=LICENSE
@@ -21,6 +23,8 @@ SolidCompression=yes
 PrivilegesRequired=lowest
 OutputDir=.
 UninstallDisplayIcon={app}\Swan.ico
+WizardImageFile=SwanSetup.bmp
+WizardSmallImageFile=Swan.bmp
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
