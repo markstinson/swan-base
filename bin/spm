@@ -3,10 +3,11 @@
 installed_db="/etc/setup/installed.db"
 timestamp="/etc/setup/timestamp"
 setup_rc="/etc/setup/setup.rc"
-spm_cache="/var/cache/spm"
+spm_cache="$HOME/.cache/spm"
 available="$spm_cache/available"
 installed="$spm_cache/installed"
 
+mkdir -p "$spm_cache"
 # verbose output
 verbose=no
 function say() {
@@ -243,7 +244,7 @@ while true ; do
         break;;
     -c|--clean)
         shift
-        cd $spm_cache
+        cd $spm_cache &&
         for i in $(find . -maxdepth 1 -type d -name '??*'); do 
             rm -r $i
         done
