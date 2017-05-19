@@ -28,7 +28,16 @@ WizardImageFile=SwanSetup.bmp
 WizardSmallImageFile=Swan.bmp
 
 [Languages]
-Name: "english"; MessagesFile: "compiler:Default.isl"
+Name: "en"; MessagesFile: "compiler:Default.isl"
+Name: "nl"; MessagesFile: "compiler:Languages\Dutch.isl"
+Name: "es"; MessagesFile: "compiler:Languages\Spanish.isl"
+Name: "br"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
+Name: "de"; MessagesFile: "compiler:Languages\German.isl"
+Name: "fr"; MessagesFile: "compiler:Languages\French.isl"
+Name: "ru"; MessagesFile: "compiler:Languages\Russian.isl"
+
+[Messages]
+en.FinishedHeadingLabel=[name] Setup Completed
 
 [Icons]
 Name: "{group}\{cm:ProgramOnTheWeb,Swan}"; Filename: "http://www.starlig.ht"        
