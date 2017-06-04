@@ -18,7 +18,6 @@ DefaultGroupName=Swan
 LicenseFile=LICENSE
 OutputBaseFilename=SwanSetup
 SetupIconFile=Swan.ico
-Compression=lzma
 SolidCompression=yes
 PrivilegesRequired=lowest
 ExtraDiskSpaceRequired=1536837509
@@ -26,6 +25,7 @@ OutputDir=.
 UninstallDisplayIcon={app}\Swan.ico
 WizardImageFile=SwanSetup.bmp
 WizardSmallImageFile=Swan.bmp
+ShowLanguageDialog=auto
 
 [Languages]
 Name: "en"; MessagesFile: "compiler:Default.isl"
