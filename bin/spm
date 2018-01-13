@@ -42,23 +42,23 @@ function encode() {
 }
 
 function get_installed() {
-    grep -v "INSTALLED.DB" $installed_db | awk -F\  '{x=$2;sub(/\.tar.*$/,"",x);sub($1"-","",x);print $1" "x}'
+    grep -v "INSTALLED.DB" "$installed_db" | awk -F\  '{x=$2;sub(/\.tar.*$/,"",x);sub($1"-","",x);print $1" "x}'
 }
 
 function get_setup() {
     say "fetching setup for $2"
-    setup_ini="$1/$(encode $2)/x86_64/setup.ini"
+    setup_ini="$1/$(encode "$2")/x86_64/setup.ini"
     if [ -e "$setup_ini" ]; then
         cat "$setup_ini"
     else
-        wget -O - -o /dev/null $2/x86_64/setup.bz2 | bunzip2
+        wget -O - -o /dev/null "$2/x86_64/setup.bz2" | bunzip2
     fi
 }
 
 function get_setuprc_section() {
     say "fetching setup.rc section $1"
     section="$1"
-    awk -F"\t" "/^\t/{if (s==\"$section\") {print \$2}} /^\\S.*/{s=\$1}" $setup_rc
+    awk -F"\t" "/^\t/{if (s==\"$section\") {print \$2}} /^\\S.*/{s=\$1}" "$setup_rc"
 }
 
 for mirror in $(get_setuprc_section last-mirror); do
@@ -76,10 +76,10 @@ function generate_caches() {
         for mirror in $(get_setuprc_section last-mirror); do
             get_setup "$last_cache" "$mirror" | grep -v -e '^#' -e '^release' -e '^arch' -e '^setup-' -e '^install:' -e '^source:' >> "$available"
         done
-        rm -f $installed
+        rm -f "$installed"
         installed_pkgs="$(get_installed | sed 's/\+/\\+/g')"
         reg1=${installed_pkgs// /$'\\n'.*version: }
-        pkg_record "^(${reg1//$'\n'/|})" 0 "$available" > $installed
+        pkg_record "^(${reg1//$'\n'/|})" 0 "$available" > "$installed"
         say "finished generating"
     fi
 }
@@ -129,9 +129,9 @@ function top_level_pkgs() {
     base_pkgs="$(get_base)"
     search_re="requires:.*\\s(${installed_pkgs//[[:space:]]/|})\\s*\\n*"
     orphans_tmp=$(mktemp /tmp/spm.XXXXXX)
-    pkg_record "$search_re" 0 "$installed" | awk '/^requires:/{x=$0;sub(/^requires:\s*/,"",x);gsub(/\s/,"\n",x);print x}' | sort -u > $orphans_tmp
-    echo -e "$installed_pkgs\n$base_pkgs" | sort - $orphans_tmp | uniq -u
-    rm $orphans_tmp
+    pkg_record "$search_re" 0 "$installed" | awk '/^requires:/{x=$0;sub(/^requires:\s*/,"",x);gsub(/\s/,"\n",x);print x}' | sort -u > "$orphans_tmp"
+    echo -e "$installed_pkgs\n$base_pkgs" | sort - "$orphans_tmp" | uniq -u
+    rm "$orphans_tmp"
 }
 
 function reverse_dependencies_of() {
@@ -244,9 +244,9 @@ while true ; do
         break;;
     -c|--clean)
         shift
-        cd $spm_cache &&
+        cd "$spm_cache" &&
         for i in $(find . -maxdepth 1 -type d -name '??*'); do 
-            rm -r $i
+            rm -r "$i"
         done
 	rm wget-log* -f
         break;;
@@ -309,11 +309,11 @@ cygurl="http://cygwin.com/$cygexe"
 base_cmd="$spm_cache/$cygexe -Ovqn -l $(cygpath -w $spm_cache) -R $(cygpath -w /) -a $cygarch \
         -s $main_mirror \
         -s http://sirius.starlig.ht/ -K http://sirius.starlig.ht/sirius.gpg"
-mkdir -p $spm_cache
-cd $spm_cache
+mkdir -p "$spm_cache"
+cd "$spm_cache"
 # download setup.exe (if newer)
 wget -nv -N $cygurl
-chmod +x $cygexe
+chmod +x "$cygexe"
 if [ -n "$isadmin" ]; then
     chmod -R +wX /var/cache/rebase
 fi

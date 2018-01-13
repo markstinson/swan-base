@@ -53,7 +53,7 @@ begin
 end;
 
 [Run]
-Filename: "{tmp}\setup-x86_64.exe"; WorkingDir: "{tmp}"; Parameters: "-vgBqOn -P swan-desktop -R ""{app}"" -s ""http://sirius.starlig.ht/"" -s ""http://cygwin.mirror.constant.com/"" -K ""http://sirius.starlig.ht/sirius.gpg"""; Flags: waituntilterminated hidewizard runascurrentuser
+Filename: "{tmp}\setup-x86_64.exe"; WorkingDir: "{tmp}"; Parameters: "-vgBqOn -P swan-desktop -R ""{app}"" -s ""http://sirius.starlig.ht/"" -s ""http://mirrors.xmission.com/cygwin/"" -K ""http://sirius.starlig.ht/sirius.gpg"""; Flags: waituntilterminated hidewizard runascurrentuser
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{group}"
