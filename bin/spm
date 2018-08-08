@@ -130,8 +130,10 @@ function top_level_pkgs() {
     search_re="requires:.*\\s(${installed_pkgs//[[:space:]]/|})\\s*\\n*"
     orphans_tmp=$(mktemp /tmp/spm.XXXXXX)
     pkg_record "$search_re" 0 "$installed" | awk '/^requires:/{x=$0;sub(/^requires:\s*/,"",x);gsub(/\s/,"\n",x);print x}' | sort -u > "$orphans_tmp"
-    echo -e "$installed_pkgs\n$base_pkgs" | sort - "$orphans_tmp" | uniq -u
-    rm "$orphans_tmp"
+    orphans_tmp2=$(mktemp /tmp/spm.XXXXXX)
+    echo -e "$installed_pkgs\n$base_pkgs" | sort - "$orphans_tmp" | uniq -u > $orphans_tmp2
+    echo -e "$installed_pkgs\n" | sort - "$orphans_tmp2" | uniq -d
+    rm "$orphans_tmp" "$orphans_tmp2"
 }
 
 function reverse_dependencies_of() {
